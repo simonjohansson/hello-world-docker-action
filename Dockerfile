@@ -1,14 +1,5 @@
 FROM golang:1.23-bookworm AS base
 
-RUN adduser \
-  --disabled-password \
-  --gecos "" \
-  --home "/nonexistent" \
-  --shell "/sbin/nologin" \
-  --no-create-home \
-  --uid 65532 \
-  user
-
 WORKDIR $GOPATH/src/hello-world-docker-action
 
 COPY . .

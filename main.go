@@ -27,9 +27,9 @@ func main() {
 	group("Output", func() {
 		f, err := os.Open(os.Getenv("GITHUB_OUTPUT"))
 		if err != nil {
-			panic(err)
+			fmt.Println(err)
+		} else {
+			f.WriteString(fmt.Sprintf("time=%s", time.Now().String()))
 		}
-
-		f.WriteString(fmt.Sprintf("time=%s", time.Now().String()))
 	})
 }

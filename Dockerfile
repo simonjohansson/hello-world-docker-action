@@ -19,6 +19,4 @@ FROM gcr.io/distroless/static-debian12
 
 COPY --from=base /go/bin/app /
 
-USER nonroot:nonroot
-
 CMD ["/app"]

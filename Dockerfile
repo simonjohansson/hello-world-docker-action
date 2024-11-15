@@ -26,4 +26,4 @@ COPY --from=base /main .
 
 USER user:user
 
-CMD ["./main"]
+ENTRYPOINT ["./main"]

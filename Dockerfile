@@ -13,17 +13,10 @@ WORKDIR $GOPATH/src/hello-world-docker-action
 
 COPY . .
 
-RUN CGO_ENABLED=0 go build -o /main main.go
+RUN CGO_ENABLED=0 go build -o /go/bin/app
 
-FROM scratch
+FROM gcr.io/distroless/static-debian12
 
-COPY --from=base /usr/share/zoneinfo /usr/share/zoneinfo
-COPY --from=base /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
-COPY --from=base /etc/passwd /etc/passwd
-COPY --from=base /etc/group /etc/group
+COPY --from=base /go/bin/app /
 
-COPY --from=base /main .
-
-USER user:user
-
-ENTRYPOINT ["./main"]
+CMD ["/app"]

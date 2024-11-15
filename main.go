@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"os"
 	"time"
 )
@@ -27,12 +26,17 @@ func main() {
 
 	group("Output", func() {
 		fmt.Println("Writing time to output file")
-		f, err := os.OpenFile(os.Getenv("GITHUB_OUTPUT"), os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0600)
+		f, err := os.OpenFile(os.Getenv("GITHUB_OUTPUT"), os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
+		fmt.Println("1")
 		if err != nil {
-			log.Fatal(err)
+			fmt.Println("2")
+			fmt.Println(err)
+			os.Exit(-1)
 		}
+		fmt.Println("3")
 		defer f.Close()
-
+		fmt.Println("4")
 		f.WriteString(fmt.Sprintf("time=%s", time.Now().String()))
+		fmt.Println("5")
 	})
 }

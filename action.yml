@@ -13,5 +13,3 @@ outputs:
 runs:
   using: docker
   image: docker://ghcr.io/simonjohansson/hello-world-docker-action:main
-  env:
-    INPUT_WHO_TO_GREET: ${{ inputs.who-to-greet }}
